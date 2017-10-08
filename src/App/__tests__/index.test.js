@@ -1,16 +1,19 @@
 import React from 'react'
 import { mount } from 'enzyme'
 
-import { LocalStorageMock } from '../../__mocks__/localStorage'
-import App from '../index'
+import { dateIndex } from '../../utils'
 
-global.localStorage = new LocalStorageMock({
-  chuck: JSON.stringify({
-  })
-});
+const App = require('../index').default
 
-describe('App', () => {
+jest.mock('../AppModelDatesMigrator', () => ({ migrate: jest.fn(() => ({})) }))
+import { migrate } from '../AppModelDatesMigrator'
+
+describe('index', () => {
   it('instantiates with empty localStorage', () => {
     const wrapper = mount(<App />)
+  })
+
+  it('runs the migrator on the model in localStorage', () => {
+    expect(migrate).toHaveBeenCalled()
   })
 })

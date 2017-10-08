@@ -50,6 +50,6 @@
   },
   "jest": {
     "testEnvironment": "jsdom",
-    "setupTestFrameworkScriptFile": "./src/__mocks__/localStorage.js"
+    "setupTestFrameworkScriptFile": "./src/__mocks__/localStorageProxy.js"
   }
 }
