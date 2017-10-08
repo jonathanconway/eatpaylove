@@ -1,3 +1,5 @@
+import { dateIndex } from '../utils'
+
 export class LocalStorageMock {
   constructor(mockStore) {
     this.store = mockStore || {};
@@ -23,7 +25,7 @@ export class LocalStorageMock {
 global.localStorage = new LocalStorageMock({
   chuck: JSON.stringify({
     dates: {
-      '2017-01-01': { items: [] }
+      [dateIndex(new Date())]: { items: [] }
     }
   })
 });

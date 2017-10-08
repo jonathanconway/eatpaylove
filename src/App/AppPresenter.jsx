@@ -40,7 +40,7 @@ export default class AppPresenter extends Presenter {
     })
 
   todaysItems = () =>
-    (((this.model.dates || {})[dateIndex(this.model.selectedDate)] || {}).items || [])
+    (((this.model.dates || {})[dateIndex(new Date(this.model.selectedDate))] || {}).items || [])
       .map(this.formatItem)
 
   onChangeFieldValue = field => event =>

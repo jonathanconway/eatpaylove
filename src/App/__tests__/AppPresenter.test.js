@@ -3,7 +3,7 @@ import AppPresenter from '../AppPresenter'
 import { dateIndex } from '../../utils'
 
 describe('AppPresenter', () => {
-  describe('selectedDateItems', () => {
+  describe('todaysItems', () => {
     const todaysDate = new Date()
     const tomorrowsDate = new Date(todaysDate.getFullYear(), todaysDate.getMonth(), todaysDate.getDate() + 1)
 
@@ -178,19 +178,19 @@ describe('AppPresenter', () => {
       const presenter = new AppPresenter(model, newModel => Object.assign(model, newModel))
       presenter.onGoBackOneDay()
 
-      expect(dateIndex(model.selectedDate)).toEqual('2017-08-07')
+      expect(dateIndex(model.selectedDate)).toEqual(dateIndex(new Date(2017, 8, 7)))
     })
   })
 
   describe('onGoForwardOneDay', () => {
-    it('sets selectedDate back by one day', () => {
+    it('sets selectedDate forward by one day', () => {
       const model = new AppModel()
       model.selectedDate = new Date(2017, 8, 8)
 
       const presenter = new AppPresenter(model, newModel => Object.assign(model, newModel))
       presenter.onGoForwardOneDay()
 
-      expect(dateIndex(model.selectedDate)).toEqual('2017-08-09')
+      expect(dateIndex(model.selectedDate)).toEqual(dateIndex(new Date(2017, 8, 9)))
     })
   })
 
@@ -209,18 +209,18 @@ describe('AppPresenter', () => {
   describe('recentUniqueExpenses', () => {
     it('returns the last 20 unique expenses in reverse-order of date/time, alphabetized', () => {
       const model = new AppModel()
-      model.dates['2017-05-20'] = { items: [ { item: 'A' }, { item: 'B' }, { item: 'C' } ] }
-      model.dates['2017-05-19'] = { items: [ { item: 'D' }, { item: 'A' }, { item: 'B' } ] }
-      model.dates['2017-05-16'] = { items: [ { item: 'E' }, { item: 'A' }, { item: 'A' } ] }
-      model.dates['2017-05-10'] = { items: [ { item: 'A' }, { item: 'F' }, { item: 'A' } ] }
-      model.dates['2017-04-20'] = { items: [ { item: 'A' }, { item: 'A' }, { item: 'G' } ] }
-      model.dates['2017-03-20'] = { items: [ { item: 'A' }, { item: 'H' }, { item: 'A' } ] }
-      model.dates['2017-02-20'] = { items: [ { item: 'P' }, { item: 'A' }, { item: 'A' } ] }
-      model.dates['2017-01-20'] = { items: [ { item: 'A' }, { item: 'J' }, { item: 'A' } ] }
-      model.dates['2017-01-19'] = { items: [ { item: 'A' }, { item: 'A' }, { item: 'K' } ] }
-      model.dates['2017-01-18'] = { items: [ { item: 'L' }, { item: 'M' }, { item: 'N' } ] }
-      model.dates['2017-01-17'] = { items: [ { item: 'O' }, { item: 'I' }, { item: 'Q' } ] }
-      model.dates['2017-01-16'] = { items: [ { item: 'R' }, { item: 'S' }, { item: 'T' } ] }
+      model.dates[dateIndex(new Date(2017, 5, 20))] = { items: [ { item: 'A' }, { item: 'B' }, { item: 'C' } ] }
+      model.dates[dateIndex(new Date(2017, 5, 19))] = { items: [ { item: 'D' }, { item: 'A' }, { item: 'B' } ] }
+      model.dates[dateIndex(new Date(2017, 5, 16))] = { items: [ { item: 'E' }, { item: 'A' }, { item: 'A' } ] }
+      model.dates[dateIndex(new Date(2017, 5, 10))] = { items: [ { item: 'A' }, { item: 'F' }, { item: 'A' } ] }
+      model.dates[dateIndex(new Date(2017, 4, 20))] = { items: [ { item: 'A' }, { item: 'A' }, { item: 'G' } ] }
+      model.dates[dateIndex(new Date(2017, 3, 20))] = { items: [ { item: 'A' }, { item: 'H' }, { item: 'A' } ] }
+      model.dates[dateIndex(new Date(2017, 2, 20))] = { items: [ { item: 'P' }, { item: 'A' }, { item: 'A' } ] }
+      model.dates[dateIndex(new Date(2017, 1, 20))] = { items: [ { item: 'A' }, { item: 'J' }, { item: 'A' } ] }
+      model.dates[dateIndex(new Date(2017, 1, 19))] = { items: [ { item: 'A' }, { item: 'A' }, { item: 'K' } ] }
+      model.dates[dateIndex(new Date(2017, 1, 18))] = { items: [ { item: 'L' }, { item: 'M' }, { item: 'N' } ] }
+      model.dates[dateIndex(new Date(2017, 1, 17))] = { items: [ { item: 'O' }, { item: 'I' }, { item: 'Q' } ] }
+      model.dates[dateIndex(new Date(2017, 1, 16))] = { items: [ { item: 'R' }, { item: 'S' }, { item: 'T' } ] }
 
       const presenter = new AppPresenter(model)
 
