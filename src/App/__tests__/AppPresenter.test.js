@@ -251,5 +251,25 @@ describe('AppPresenter', () => {
       expect(firstItemInModel.calories).toEqual(2)
     })
   })
+
+  describe('getBulletFormattedDate', () => {
+    it('formats the date with a bullet point between month and date', () => {
+      const presenter = new AppPresenter()
+
+      const result = presenter.getBulletFormattedDate(new Date(2017, 9, 1))
+
+      expect(result).toEqual('01•10')
+    })
+  })
+
+  describe('getSelectedYear', () => {
+    it('formats the date as a full 4-digit year', () => {
+      const presenter = new AppPresenter()
+
+      const result = presenter.getSelectedYear(new Date(2017, 9, 1))
+
+      expect(result).toEqual('2017')
+    })
+  })
 })
 

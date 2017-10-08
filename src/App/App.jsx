@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
 
@@ -250,6 +251,34 @@ const Footer = styled.footer`
     transform: scale(-1, 1);`
 
 export default class App extends React.Component {
+  static propTypes = {
+    selectedDate: PropTypes.object,
+    getBulletFormattedDate: PropTypes.func,
+    newExpense: PropTypes.object,
+    getSelectedYear: PropTypes.func,
+    todaysItems: PropTypes.func,
+    totalOfColumn: PropTypes.func,
+    recentUniqueExpenses: PropTypes.func,
+    onGoBackOneDay: PropTypes.func,
+    onGoForwardOneDay: PropTypes.func,
+    onDeleteExpense: PropTypes.func,
+    onChangeFieldValue: PropTypes.func,
+  }
+
+  static defaultProps = {
+    selectedDate: new Date(),
+    getBulletFormattedDate: () => null,
+    newExpense: {},
+    getSelectedYear: () => null,
+    todaysItems: () => null,
+    totalOfColumn: () => null,
+    recentUniqueExpenses: () => null,
+    onGoBackOneDay: () => null,
+    onGoForwardOneDay: () => null,
+    onDeleteExpense: () => null,
+    onChangeFieldValue: () => null
+  }
+
   scrollTodaysExpensesContainerToBottom = () => 
     this.TodaysExpensesContainer.scrollTop = 1000000
 
@@ -270,9 +299,10 @@ export default class App extends React.Component {
   render = () => {
     const {
       selectedDate,
+      getBulletFormattedDate,
       newExpense,
 
-      selectedYear,
+      getSelectedYear,
       todaysItems,
       totalOfColumn,
       recentUniqueExpenses,
@@ -288,14 +318,14 @@ export default class App extends React.Component {
         <Title>👄 💵 💛</Title>
 
         <TitleBarButtonContainer>
-          <BackForwardButton type="button" onClick={onGoBackOneDay}>←</BackForwardButton>
+          <BackForwardButton type="button" onTouchStart={onGoBackOneDay}>←</BackForwardButton>
           <SubTitle>
             <MonthDay>
-              {selectedDate.getDate().toString().padStart(2, 0)}•{selectedDate.getMonth().toString().padStart(2, 0)}
+              {getBulletFormattedDate(selectedDate)}
             </MonthDay>
-            <Year>{selectedDate.getFullYear()}</Year>
+            <Year>{getSelectedYear(selectedDate)}</Year>
           </SubTitle>
-          <BackForwardButton type="button" onClick={onGoForwardOneDay}>→</BackForwardButton>
+          <BackForwardButton type="button" onTouchStart={onGoForwardOneDay}>→</BackForwardButton>
         </TitleBarButtonContainer>
       </TitleBar>
 
@@ -358,14 +388,14 @@ export default class App extends React.Component {
         />
         <AddExpenseButton
           type="button"
-          onClick={this.onAddExpense}>Add Expense</AddExpenseButton>
+          onTouchStart={this.onAddExpense}>Add Expense</AddExpenseButton>
       </NewExpense>
 
       <Panel>
         <PanelHeading>Recent Entries</PanelHeading>
 
         {recentUniqueExpenses().map((recent, index) =>
-          <Recent key={'recent' + recent.item + index} onClick={this.onPopulateRecentExpense(recent)}>
+          <Recent key={'recent' + recent.item + index} onTouchStart={this.onPopulateRecentExpense(recent)}>
             <RecentItem>{recent.item}</RecentItem>
             <RecentCost>${recent.cost}</RecentCost>
             <RecentCalories>{recent.calories}</RecentCalories>
