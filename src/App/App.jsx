@@ -404,7 +404,7 @@ export default class App extends React.Component {
       </Panel>
 
       <Footer>
-        <CopyrightSymbol>&copy;</CopyrightSymbol> 2017 • a <a href="http://conwy.co">CONW_Y</a> experiment
+        <CopyrightSymbol>&copy;</CopyrightSymbol> 2017 • a <a href="http://conwy.co">CONW_Y</a> experiment • <a href="https://github.com/jonathanconway/eatpaylove">Source</a>
       </Footer>
     </Body>
   }

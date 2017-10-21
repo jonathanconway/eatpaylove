@@ -28,14 +28,15 @@ module.exports = {
   },
 
   plugins: [
-    new (require('clean-webpack-plugin'))(['dist']),
-
     // HTML app-shell that bootstraps the React app
     new (require('html-webpack-plugin'))({
       title: 'EatPayLove',
       template: './src/index.html',
       appCacheManifest: '/auto.appcache'
-    })
+    }),
+    new (require('copy-webpack-plugin'))([{
+      from: 'assets'
+    }])
   ],
 
   devServer: {
