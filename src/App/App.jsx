@@ -395,7 +395,7 @@ export default class App extends React.Component {
         <PanelHeading>Recent Entries</PanelHeading>
 
         {recentUniqueExpenses().map((recent, index) =>
-          <Recent key={'recent' + recent.item + index} onTouchStart={this.onPopulateRecentExpense(recent)}>
+          <Recent key={'recent' + recent.item + index} onClick={this.onPopulateRecentExpense(recent)}>
             <RecentItem>{recent.item}</RecentItem>
             <RecentCost>${recent.cost}</RecentCost>
             <RecentCalories>{recent.calories}</RecentCalories>
