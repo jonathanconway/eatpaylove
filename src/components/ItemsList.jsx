@@ -29,6 +29,8 @@ const Table = styled.table.attrs({
     cellSpacing: "0",
     cellPadding: `${gridSize * 10}rem`
   })`
+    width: 100%;
+
     td, th {
       &:nth-child(1) { width: 30%; max-width: 9rem; }
       &:nth-child(2) { width: 30%; }
