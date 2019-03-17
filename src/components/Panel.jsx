@@ -10,6 +10,7 @@ export default styled.div`
   top: 20.5rem;
   height: 12rem;
   overflow: scroll;
+  -webkit-overflow-scrolling: touch;
   border-radius: ${borderRadius}rem;
   border: solid 1px ${tertiaryColor};
   padding: 0 0 0 0.5rem;

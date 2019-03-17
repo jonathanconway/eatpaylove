@@ -17,6 +17,7 @@ import {
 const Container = styled.div`
   ${stackedContainer}
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   top: 4rem;
   height: 10rem;
   margin: ${gridSize}rem ${gridSize / 4}rem ${gridSize / 4}rem ${gridSize / 4}rem;
